@@ -5,19 +5,19 @@ A full-stack Hotel Booking Management System built using FastAPI, PostgreSQL, HT
 ## Screenshots
 
 ### Home Page
-![Home Page](screenshots/home.png)
+![Home Page](screenshots/screenshotshome.png)
 
 ### Rooms Page
-![Rooms Page](screenshots/rooms.png)
+![Rooms Page](screenshots/screenshotsrooms.png)
 
 ### My Bookings
-![My Bookings](screenshots/my-bookings.png)
+![My Bookings](screenshots/screenshotsmy-bookings.png)
 
 ### Admin Dashboard
-![Admin Dashboard](screenshots/admin-dashboard.png)
+![Admin Dashboard](screenshots/screenshotsadmin-dashboard.png)
 
-### Room Management
-![Room Management](screenshots/admin-rooms.png)
+### Admin Rooms
+![Admin Rooms](screenshots/screenshotsadmin-rooms.png)
 
 ## Features
 

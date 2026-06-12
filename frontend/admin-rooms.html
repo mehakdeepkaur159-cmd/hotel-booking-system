@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Rooms</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body onload="loadAdminRooms()">
+
+<nav>
+    <h2>Admin Rooms</h2>
+    <div>
+        <a href="admin.html">Dashboard</a>
+        <a href="rooms.html">Rooms</a>
+        <button onclick="logoutUser()">Logout</button>
+    </div>
+</nav>
+
+<div class="form-container">
+    <h2>Add Room</h2>
+
+    <input type="text" id="adminRoomNumber" placeholder="Room Number">
+    <input type="text" id="adminRoomType" placeholder="Room Type">
+    <input type="number" id="adminRoomPrice" placeholder="Price">
+    <input type="text" id="adminRoomImage" placeholder="Image URL">
+
+    <button onclick="addAdminRoom()">Add Room</button>
+
+    <p id="adminRoomMessage"></p>
+</div>
+
+<h1 class="page-title">Manage Rooms</h1>
+
+<div id="admin-rooms-container" class="rooms-container"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

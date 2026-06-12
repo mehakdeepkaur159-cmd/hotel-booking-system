@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body onload="loadMyBookings()">
+
+<nav>
+    <h2>Hotel Booking</h2>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="my-bookings.html">My Bookings</a>
+        <a href="login.html">Login</a>
+
+        <button onclick="logoutUser()">
+            Logout
+        </button>
+    </div>
+</nav>
+
+<h1 class="page-title">My Bookings</h1>
+
+<div id="bookings-container" class="rooms-container"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

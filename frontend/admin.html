@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css?v=2">
+
+</head>
+<body onload="loadDashboard()">
+
+<nav>
+    <h2>Admin Dashboard</h2>
+
+    <div>
+        <a href="admin.html">Dashboard</a>
+        <a href="admin-rooms.html">Manage Rooms</a>
+        <a href="admin-bookings.html">Bookings</a>
+        <a href="admin-users.html">Users</a>
+        <a href="rooms.html">Rooms</a>
+
+        <button onclick="logoutUser()">
+            Logout
+        </button>
+    </div>
+</nav>
+
+<div class="dashboard">
+
+    <div class="card">
+        <h3>Total Users</h3>
+        <p id="users">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Total Rooms</h3>
+        <p id="rooms">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Total Bookings</h3>
+        <p id="bookings">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Total Revenue</h3>
+        <p id="revenue">0</p>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reviews</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body onload="loadReviews()">
+
+<nav>
+    <h2>Hotel Reviews</h2>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="my-bookings.html">My Bookings</a>
+        <a href="reviews.html">Reviews</a>
+    </div>
+</nav>
+
+<div class="form-container">
+    <h2>Add Review</h2>
+
+    <input type="number" id="roomId" placeholder="Room ID">
+
+    <input type="number" id="rating"
+           placeholder="Rating (1-5)"
+           min="1"
+           max="5">
+
+    <input type="text" id="comment"
+           placeholder="Comment">
+
+    <button onclick="addReview()">
+        Submit Review
+    </button>
+</div>
+
+<h1 class="page-title">Reviews</h1>
+
+<div id="reviews-container"
+     class="rooms-container"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

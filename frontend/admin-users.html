@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Users</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body onload="loadAdminUsers()">
+
+<nav>
+    <h2>Admin Users</h2>
+
+    <div>
+        <a href="admin.html">Dashboard</a>
+        <a href="admin-rooms.html">Manage Rooms</a>
+        <a href="admin-bookings.html">Bookings</a>
+        <a href="admin-users.html">Users</a>
+        <a href="rooms.html">Rooms</a>
+        <button onclick="logoutUser()">Logout</button>
+    </div>
+</nav>
+
+<h1 class="page-title">All Users</h1>
+
+<div id="admin-users-container" class="rooms-container"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

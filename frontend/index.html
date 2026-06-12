@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Booking Website</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body onload="checkAdminLink()"></body>
+
+    <nav>
+    <h2>Hotel Booking</h2>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="my-bookings.html">My Bookings</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="admin.html" id="adminLink" style="display: none;">Admin Dashboard</a>
+
+        <button onclick="logoutUser()">
+            Logout
+        </button>
+    </div>
+</nav>
+
+    <section class="hero">
+        <h1>Book Your Perfect Hotel Room</h1>
+        <p>Find rooms, book stays, manage bookings, and explore hotel services.</p>
+        <a href="rooms.html" class="btn">View Rooms</a>
+    </section>
+
+    <section class="features">
+    <h2>Why Choose Us?</h2>
+
+    <div class="feature-container">
+        <div class="feature-card">
+            <h3>Luxury Rooms</h3>
+            <p>Comfortable and premium rooms for every type of stay.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Easy Booking</h3>
+            <p>Book your room quickly with secure online booking.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Best Prices</h3>
+            <p>Affordable rooms with transparent pricing.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>24/7 Support</h3>
+            <p>We are always available to help our guests.</p>
+        </div>
+    </div>
+</section>
+
+<section class="featured-rooms">
+    <h2>Featured Rooms</h2>
+
+    <div class="rooms-container">
+
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945">
+            <h3>Deluxe Room</h3>
+            <p>Price: Rs. 2000/night</p>
+            <a href="rooms.html" class="small-btn">Book Now</a>
+        </div>
+
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85">
+            <h3>Luxury Suite</h3>
+            <p>Price: Rs. 5000/night</p>
+            <a href="rooms.html" class="small-btn">Book Now</a>
+        </div>
+
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461">
+            <h3>Super Deluxe</h3>
+            <p>Price: Rs. 8000/night</p>
+            <a href="rooms.html" class="small-btn">Book Now</a>
+        </div>
+
+    </div>
+</section>
+<section class="stats">
+
+    <div class="stat-box">
+        <h2>500+</h2>
+        <p>Happy Guests</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>100+</h2>
+        <p>Rooms</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>24/7</h2>
+        <p>Support</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>4.8★</h2>
+        <p>Average Rating</p>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Hotel Booking System | Developed by Mehakdeep Kaur</p>
+</footer>
+
+   <script src="script.js"></script>
+</body>
+</html>

@@ -2,6 +2,23 @@
 
 A full-stack Hotel Booking Management System built using FastAPI, PostgreSQL, HTML, CSS, and JavaScript.
 
+## Screenshots
+
+### Home Page
+![Home Page](screenshots/home.png)
+
+### Rooms Page
+![Rooms Page](screenshots/rooms.png)
+
+### My Bookings
+![My Bookings](screenshots/my-bookings.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/admin-dashboard.png)
+
+### Room Management
+![Room Management](screenshots/admin-rooms.png)
+
 ## Features
 
 ### User Features

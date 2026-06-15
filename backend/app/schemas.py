@@ -15,6 +15,12 @@ class RoomCreate(BaseModel):
     room_type: str
     price: float
     image_url: str
+    description: str | None = None
+    bed_type: str | None = None
+    max_guests: int | None = None
+    room_size: str | None = None
+    facilities: str | None = None
+
 
 class BookingCreate(BaseModel):
     room_id: int
@@ -33,6 +39,11 @@ class RoomUpdate(BaseModel):
     price: float
     available: str
     image_url: str
+    description: str | None = None
+    bed_type: str | None = None
+    max_guests: int | None = None
+    room_size: str | None = None
+    facilities: str | None = None
 
 class ReviewCreate(BaseModel):
     room_id: int

@@ -4,6 +4,7 @@ from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy import Date
+from sqlalchemy import Text
 
 class User(Base):
     __tablename__ = "users"
@@ -24,6 +25,15 @@ class Room(Base):
     price = Column(Float)
     available = Column(String, default="Yes")
     image_url = Column(String, nullable=True)
+    description = Column(Text)
+    bed_type = Column(String)
+    max_guests = Column(Integer)
+    room_size = Column(String)
+    facilities = Column(Text)
+    image1 = Column(String)
+    image2 = Column(String)
+    image3 = Column(String)
+    image4 = Column(String)
 
 class Booking(Base):
     __tablename__ = "bookings"

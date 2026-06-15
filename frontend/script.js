@@ -64,31 +64,49 @@ async function loginUser() {
 }
 
 async function loadRooms() {
-    const response = await fetch(`${API_URL}/rooms`);
-    const rooms = await response.json();
+    try {
+        const response = await fetch(`${API_URL}/rooms?page=1&limit=50`);
 
-    const container = document.getElementById("rooms-container");
-    container.innerHTML = "";
+        if (!response.ok) {
+            throw new Error("Rooms API not working");
+        }
 
-    rooms.forEach(room => {
-       container.innerHTML += `
-<div class="room-card">
-    <img src="${room.image_url || 'https://via.placeholder.com/300x180'}">
+        const rooms = await response.json();
 
-    <h3>Room ${room.room_number}</h3>
+        const container = document.getElementById("rooms-container");
+        container.innerHTML = "";
 
-    <p><strong>Type:</strong> ${room.room_type}</p>
+        rooms.forEach(room => {
+            container.innerHTML += `
+                <div class="room-card">
+                    <img src="${room.image_url || 'https://via.placeholder.com/300x180'}">
 
-    <p><strong>Price:</strong> Rs. ${room.price}</p>
+                    <h3>Room ${room.room_number}</h3>
 
-    <p><strong>Availability:</strong> ${room.available}</p>
+                    <p><strong>Type:</strong> ${room.room_type}</p>
+                    <p><strong>Price:</strong> Rs. ${room.price}</p>
+                    <p><strong>Availability:</strong> ${room.available}</p>
 
-    <button onclick="bookRoom(${room.id})">
-        Book Now
-    </button>
-</div>
-`;
-    });
+                    <button onclick="viewRoomDetails(${room.id})">
+                        View Details
+                    </button>
+
+                    <button onclick="bookRoom(${room.id})">
+                        Book Now
+                    </button>
+                </div>
+            `;
+        });
+
+    } catch (error) {
+        console.log(error);
+        document.getElementById("rooms-container").innerHTML =
+            "<p>Rooms not loading. Check backend server.</p>";
+    }
+}
+
+function viewRoomDetails(roomId) {
+    window.location.href = `room-details.html?id=${roomId}`;
 }
 
 function bookRoom(roomId) {
@@ -102,6 +120,18 @@ function bookRoom(roomId) {
 
     document.getElementById("selectedRoomId").value = roomId;
     document.getElementById("bookingModal").style.display = "block";
+}
+function loadRoomsFromURL() {
+    loadRooms();
+
+    const params = new URLSearchParams(window.location.search);
+    const roomId = params.get("book_room_id");
+
+    if (roomId) {
+        setTimeout(() => {
+            bookRoom(roomId);
+        }, 800);
+    }
 }
 async function loadMyBookings() {
     const token = localStorage.getItem("token");
@@ -369,6 +399,11 @@ async function addAdminRoom() {
     const roomType = document.getElementById("adminRoomType").value;
     const price = document.getElementById("adminRoomPrice").value;
     const imageUrl = document.getElementById("adminRoomImage").value;
+    const description = document.getElementById("adminRoomDescription").value;
+const bedType = document.getElementById("adminRoomBedType").value;
+const maxGuests = document.getElementById("adminRoomMaxGuests").value;
+const roomSize = document.getElementById("adminRoomSize").value;
+const facilities = document.getElementById("adminRoomFacilities").value;
 
     const response = await fetch(`${API_URL}/add-room`, {
         method: "POST",
@@ -380,7 +415,13 @@ async function addAdminRoom() {
             room_number: roomNumber,
             room_type: roomType,
             price: Number(price),
-            image_url: imageUrl
+            image_url: imageUrl,
+
+            description: description,
+            bed_type: bedType,
+            max_guests: Number(maxGuests),
+            room_size: roomSize,
+            facilities: facilities
         })
     });
 
@@ -495,13 +536,20 @@ async function loadAdminUsers() {
     });
 }
 async function editRoom(roomId) {
+
     const roomType = prompt("Enter new room type");
     const price = prompt("Enter new price");
     let available = prompt("Available? Type Yes or No");
     const imageUrl = prompt("Enter image URL");
 
+    const description = prompt("Enter room description");
+    const bedType = prompt("Enter bed type");
+    const maxGuests = prompt("Enter max guests");
+    const roomSize = prompt("Enter room size");
+    const facilities = prompt("Enter facilities");
+
     if (!roomType || !price || !available || !imageUrl) {
-        alert("All fields are required");
+        alert("Required fields are missing");
         return;
     }
 
@@ -519,7 +567,13 @@ async function editRoom(roomId) {
             room_type: roomType,
             price: Number(price),
             available: available,
-            image_url: imageUrl
+            image_url: imageUrl,
+
+            description: description,
+            bed_type: bedType,
+            max_guests: Number(maxGuests),
+            room_size: roomSize,
+            facilities: facilities
         })
     });
 
@@ -620,5 +674,17 @@ function checkAdminLink() {
         adminLink.style.display = "inline";
     } else if (adminLink) {
         adminLink.style.display = "none";
+    }
+}
+function loadRoomsFromURL() {
+    loadRooms();
+
+    const params = new URLSearchParams(window.location.search);
+    const roomId = params.get("book_room_id");
+
+    if (roomId) {
+        setTimeout(() => {
+            bookRoom(roomId);
+        }, 800);
     }
 }

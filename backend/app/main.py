@@ -137,7 +137,13 @@ def add_room(
         room_number=room.room_number,
         room_type=room.room_type,
         price=room.price,
-        image_url=room.image_url
+        image_url=room.image_url,
+
+        description=room.description,
+        bed_type=room.bed_type,
+        max_guests=room.max_guests,
+        room_size=room.room_size,
+        facilities=room.facilities
     )
 
     db.add(new_room)
@@ -380,6 +386,12 @@ def update_room(
     room.price = room_data.price
     room.available = room_data.available
     room.image_url = room_data.image_url
+
+    room.description = room_data.description
+    room.bed_type = room_data.bed_type
+    room.max_guests = room_data.max_guests
+    room.room_size = room_data.room_size
+    room.facilities = room_data.facilities
 
     db.commit()
     db.refresh(room)
@@ -865,6 +877,14 @@ def complete_booking(
         "booking_id": booking.id,
         "status": booking.status
     }
+@app.get("/rooms/{room_id}")
+def get_room_details(room_id: int, db: Session = Depends(get_db)):
+    room = db.query(models.Room).filter(models.Room.id == room_id).first()
+
+    if not room:
+        raise HTTPException(status_code=404, detail="Room not found")
+
+    return room
 # -----------------------------
 # Home Route
 # -----------------------------

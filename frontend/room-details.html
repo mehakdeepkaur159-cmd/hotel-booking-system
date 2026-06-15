@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Room Details</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+<nav>
+    <h2>Hotel Booking</h2>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="my-bookings.html">My Bookings</a>
+        <a href="login.html">Login</a>
+    </div>
+</nav>
+
+<h1 class="page-title">Room Details</h1>
+
+<div id="roomDetails" class="rooms-container"></div>
+
+<script>
+const API_URL = "http://127.0.0.1:8000";
+
+const params = new URLSearchParams(window.location.search);
+const roomId = params.get("id");
+
+async function loadRoomDetails() {
+    const response = await fetch(`${API_URL}/rooms/${roomId}`);
+    const room = await response.json();
+
+    document.getElementById("roomDetails").innerHTML = `
+        <div class="room-card">
+            <img src="${room.image_url || 'https://via.placeholder.com/300x180'}">
+
+            <h3>Room ${room.room_number}</h3>
+
+            <p><strong>Type:</strong> ${room.room_type}</p>
+            <p><strong>Price:</strong> Rs. ${room.price}</p>
+            <p><strong>Availability:</strong> ${room.available}</p>
+
+            <p><strong>Description:</strong> ${room.description || "Luxury hotel room with modern facilities."}</p>
+            <p><strong>Bed Type:</strong> ${room.bed_type || "King Size Bed"}</p>
+            <p><strong>Max Guests:</strong> ${room.max_guests || "2"}</p>
+            <p><strong>Room Size:</strong> ${room.room_size || "250 sq ft"}</p>
+            <p><strong>Facilities:</strong> ${room.facilities || "Free Wi-Fi, AC, TV, Room Service, Airport Pickup"}</p>
+
+            <button onclick="goBack()">Back</button>
+            <button onclick="bookThisRoom(${room.id})">Book Now</button>
+        </div>
+    `;
+}
+
+function goBack() {
+    window.location.href = "rooms.html";
+}
+
+function bookThisRoom(roomId) {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        alert("Please login first");
+        window.location.href = "login.html";
+        return;
+    }
+
+    window.location.href = `rooms.html?book_room_id=${roomId}`;
+}
+
+loadRoomDetails();
+</script>
+
+</body>
+</html>

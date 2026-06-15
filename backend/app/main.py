@@ -493,22 +493,22 @@ def dashboard(
         )
 
     total_users = db.query(models.User).count()
-
     total_rooms = db.query(models.Room).count()
-
     total_bookings = db.query(models.Booking).count()
 
     total_revenue = 0
 
-    bookings = db.query(models.Booking).all()
+    bookings = db.query(models.Booking).filter(
+        models.Booking.payment_status == "paid"
+    ).all()
 
     for booking in bookings:
         days = (
-        booking.check_out_date -
-        booking.check_in_date
-    ).days
+            booking.check_out_date -
+            booking.check_in_date
+        ).days
 
-    total_revenue += days * booking.room.price
+        total_revenue += days * booking.room.price
 
     available_rooms = db.query(models.Room).filter(
         models.Room.available == "Yes"
@@ -525,45 +525,6 @@ def dashboard(
         "available_rooms": available_rooms,
         "occupied_rooms": occupied_rooms,
         "total_revenue": total_revenue
-    }
-@app.get("/booking/{booking_id}")
-def get_booking(
-    booking_id: int,
-    db: Session = Depends(get_db),
-    current_user: str = Depends(get_current_user)
-):
-    # Get booking
-    booking = db.query(models.Booking).filter(
-        models.Booking.id == booking_id
-    ).first()
-
-    if not booking:
-        raise HTTPException(
-            status_code=404,
-            detail="Booking not found"
-        )
-
-    # Get logged-in user
-    user = db.query(models.User).filter(
-        models.User.email == current_user
-    ).first()
-
-    # Admin can view any booking
-    # Normal user can only view their own booking
-    if user.role != "admin" and booking.user_id != user.id:
-        raise HTTPException(
-            status_code=403,
-            detail="Not authorized to view this booking"
-        )
-
-    return {
-        "booking_id": booking.id,
-        "user_email": booking.user.email,
-        "room_number": booking.room.room_number,
-        "room_type": booking.room.room_type,
-        "price": booking.room.price,
-        "check_in_date": booking.check_in_date,
-        "check_out_date": booking.check_out_date
     }
 
 @app.get("/users")

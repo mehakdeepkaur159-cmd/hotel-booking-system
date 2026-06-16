@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://hotel-booking-system-k7fy.onrender.com";
 
 async function registerUser() {
     alert("Register button clicked");
